@@ -27,6 +27,12 @@ const INVENTORY = [
  * @returns {number[]} ids of given items
  */
 function getIds(items) {
+  const result = [];
+
+  for (const item of items) {
+    result.push(item.id);
+  }
+  return result;
   // TODO
 }
 
@@ -35,6 +41,8 @@ function getIds(items) {
  * @returns {string[]} categories of given items
  */
 function getCategories(items) {
+  const itemCategories = items.map((item) => item.category);
+  return itemCategories;
   // TODO
 }
 
@@ -48,6 +56,10 @@ function getCategories(items) {
  * @returns {string[]} SKUs of given items
  */
 function getSkus(items) {
+  const itemSkus = items.map (
+    (item) => `${item.id}#${item.name}#${item.name.length}`
+  );
+  return itemSkus;
   // TODO
 }
 
@@ -56,6 +68,7 @@ function getSkus(items) {
  * @returns {Item[]} all items in the "fruit" category
  */
 function getFruits(items) {
+  return items.filter((item) => item.category === "fruit");
   // TODO
 }
 
@@ -65,6 +78,8 @@ function getFruits(items) {
  * @returns {Item[]} all items in the given category
  */
 function getItemsByCategory(items, category) {
+  return items.filter((item) => item.category === category);
+
   // TODO
 }
 
@@ -74,6 +89,7 @@ function getItemsByCategory(items, category) {
  * @returns {Item[]} all cheap items
  */
 function getCheapItems(items) {
+  return items.filter((item) => item.price <= 2.5);
   // TODO
 }
 
@@ -82,6 +98,7 @@ function getCheapItems(items) {
  * @returns {number} the total quantity of all items given
  */
 function countItems(items) {
+  return items.reduce((total, item) => total + item.quantity, 0);
   // TODO
 }
 
@@ -90,6 +107,7 @@ function countItems(items) {
  * @returns {number} the cost of purchasing every single item
  */
 function getTotalCost(items) {
+  return items.reduce((total, item) => total + item.cost, 0);
   // TODO
 }
 
@@ -98,5 +116,12 @@ function getTotalCost(items) {
  * @returns {Item} the item with the highest price
  */
 function getMostExpensiveItem(items) {
+  return items.reduce((getMostExpensiveItem, item) => {
+  if (item.cost > mostExpensiveItem.price) {
+    return item;
+  } else {
+    return mostExpensiveItem
+  }});
+}  
+  
   // TODO
-}
